@@ -1,0 +1,109 @@
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+    healthcheck:
+      test:
+        ["CMD", "curl", "http://localhost:2181"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+    healthcheck:
+      test:
+        ["CMD", "kafka-topics", "--bootstrap-server", "kafka:29092", "--create", "--if-not-exists", "--topic", "newsarticles", "--replication-factor", "1", "--partitions", "1"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+
+  producer:
+    deploy:
+      replicas: 1
+    build: Producer
+    container_name: producer
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "50030:50030"
+
+
+  consumer:
+    deploy:
+      replicas: 1
+    build: Consumer
+    container_name: consumer
+    hostname: driver
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+
+    ports:
+      - "8088:8088"
+      - "8042:8042"
+      - "4041:4041"
+ 
+
+  spark-master:
+    image: bde2020/spark-master:3.1.1-hadoop3.2
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+    environment:
+      - INIT_DAEMON_STEP=setup_spark
+
+  spark-worker:
+    image: bde2020/spark-worker:3.1.1-hadoop3.2
+    container_name: spark-worker
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    ports:
+      - 8081:8081
+    
+  # webapp:
+  #   deploy:
+  #     replicas: 1
+  #   build: webapp
+  #   container_name: webapp
+  #   depends_on:
+  #     - kafka
+  #     - webapi
+  #     - spark-master
+  #     - spark-worker
+  #     - producer
+  #     - consumer
+  #   ports:
+  #     - "80:8800"
+ 
+
+  # webapi:
+  #   deploy:
+  #     replicas: 1
+  #   build: Webapi
+  #   container_name: webapi
+  #   ports:
+  #     - "5500:5500"
+   

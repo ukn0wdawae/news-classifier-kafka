@@ -1,0 +1,6 @@
+kafka_python
+beautifulsoup4
+numpy
+pandas
+pymongo
+requests

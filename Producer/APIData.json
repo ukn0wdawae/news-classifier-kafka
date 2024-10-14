@@ -1,0 +1,114 @@
+{
+    "RapidAPI": {
+        "1": {
+            "api": [
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "TECHNOLOGY",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "BUSINESS",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "TECHNOLOGY",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "WORLD",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "ENTERTAINMENT",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "SPORTS",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    },
+                    "APIlimit": 50
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "SCIENCE",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                },
+                {
+                    "requestType": "GET",
+                    "url": "https://real-time-news-data.p.rapidapi.com/topic-headlines",
+                    "queryString": {
+                        "topic": "HEALTH",
+                        "country": "US",
+                        "lang": "en"
+                    },
+                    "headers": {
+                        "X-RapidAPI-Key": "",
+                        "X-RapidAPI-Host": "real-time-news-data.p.rapidapi.com"
+                    }
+                }
+            ],
+            "MaxAPIS": 50
+        }
+    }
+}

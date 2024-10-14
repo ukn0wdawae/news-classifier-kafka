@@ -1,0 +1,14 @@
+pandas
+# mlflow
+Werkzeug
+pyspark
+Flask
+numpy
+pymongo
+marshmallow
+flask_apispec
+Flask_Cors
+apispec
+Flask_RESTful
+nltk
+xgboost
